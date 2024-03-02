@@ -9,7 +9,7 @@ export class SearchModal extends SuggestModal<SearchResult> {
   async getSuggestions(query: string): Promise<SearchResult[]> {
 	const ret: SearchResult[] = []
 	let basePath = getBasePath()
-	await requestUrl(`http://localhost:8070/search?txt=${query}`)
+	await requestUrl(`http://localhost:8070/search?txt=${query.toLowerCase()}`)
 		.then(function (response) {
 			response.json.result.map((result: SearchResult) => {
 				if (result["file"].includes(basePath)) {
